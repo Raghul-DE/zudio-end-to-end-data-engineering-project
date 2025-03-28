@@ -1,11 +1,11 @@
 # Zudio End-To-End Data Engineering Project
 ## Introduction:
-This project develops an ETL pipeline using the Zudio sales dataset on AWS. It extracts raw sales data from S3, transforms it into structured datasets (Sales Data, Store Info, Inventory Data), and loads the transformed files back into S3. Processed files are archived to prevent reprocessing.
+This project develops an ETL pipeline for retail sales analytics using AWS. It processes Zudio’s 2024 sales dataset, which is manually uploaded to S3. AWS Lambda extracts and transforms the data into structured datasets (Sales Data, Store Info, Inventory Data) before loading the processed files into an S3 processed/ folder. AWS Glue catalogs the data, enabling querying and analysis using Athena.
 
 ## Use case:
-**AI-Driven Inventory Optimization for Fast Fashion Reatilers**
+**AWS-Based Sales Data Processing Pipeline for Retail Analytics**
 
-"Retailers struggle with inventory mismanagement, leading to stockouts and excess inventory. My ETL pipeline processes historical Zudio sales data(2024) to forecast demand and optimize inventory levels for 2025."
+"Retailers need structured sales and inventory data to track performance and identify trends. My ETL pipeline processes historical Zudio sales data (2024) and organizes it into a structured format for easier querying and analytics using AWS services. This helps retailers gain insights into sales trends, store performance, and inventory distribution."
 
 ## About Dataset:
 you can download the dataset from this link(for testing purpose),available in the - [zudio_sales_data.csv file](https://www.kaggle.com/datasets/saketkshirsagar1/zudio-sales-test-dataset)
@@ -100,14 +100,13 @@ Example Use Cases:
 
 ### Conclusion:
 
-This project successfully builds an ETL pipeline on AWS to process and analyze sales data for better inventory and sales insights. By leveraging S3, Lambda, Glue, and Athena, we have automated data ingestion, transformation, and querying.
+This project successfully builds an AWS-based ETL pipeline to process and analyze Zudio’s 2024 sales data for better inventory and sales insights. By leveraging S3, Lambda, Glue, and Athena, we have automated data ingestion, transformation, and querying, enabling structured data-driven decision-making.
 
-- Automated & Scalable Data Processing – Using AWS Lambda, we ensure seamless data transformation.
--  Centralized Data Storage – Processed sales data is stored in S3 and cataloged in Glue, enabling structured analysis.
-- Retail Analytics with Athena – Businesses can gain insights into sales trends, store performance, and product demand using SQL queries.
+- Automated & Scalable Data Processing – AWS Lambda AWS Lambda automates data transformation and loading (ETL) after manual file upload.
+- Centralized Data Storage – Processed sales data is stored in Amazon S3 and cataloged in AWS Glue, ensuring structured data management.
+- Retail Analytics with Athena – Businesses can use SQL queries in Athena to analyze sales trends, store performance, and product demand.
 
-
-This pipeline helps fast fashion retailers by providing data-driven insights for better inventory management. Future enhancements could include real-time data ingestion, dashboard visualizations, and predictive analytics for optimizing stock levels.
+This pipeline helps fast fashion retailers by providing structured sales and inventory data to improve decision-making.
 
 ### Important Note:
 **Manual File Upload:** While the ETL pipeline is fully automated after the file is uploaded to S3, the file upload process itself is manual. Currently, the sales dataset (CSV) needs to be manually placed in the /to_processed/ folder in S3 for the pipeline to trigger.
