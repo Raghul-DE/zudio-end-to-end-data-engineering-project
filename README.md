@@ -99,7 +99,20 @@ Example Use Cases:
 6️. Amazon Athena allows SQL-based analytics on the transformed dataset. 
 
 ### Conclusion:
-This project showcases the implementation of an ETL pipeline on AWS, utilizing services such as S3, Lambda, Glue, and Athena to efficiently process and analyze sales data.
+
+This project successfully builds an ETL pipeline on AWS to process and analyze sales data for better inventory and sales insights. By leveraging S3, Lambda, Glue, and Athena, we have automated data ingestion, transformation, and querying.
+
+- Automated & Scalable Data Processing – Using AWS Lambda, we ensure seamless data transformation.
+-  Centralized Data Storage – Processed sales data is stored in S3 and cataloged in Glue, enabling structured analysis.
+- Retail Analytics with Athena – Businesses can gain insights into sales trends, store performance, and product demand using SQL queries.
+
+
+This pipeline helps fast fashion retailers by providing data-driven insights for better inventory management. Future enhancements could include real-time data ingestion, dashboard visualizations, and predictive analytics for optimizing stock levels.
+
+### Important Note:
+**Manual File Upload:** While the ETL pipeline is fully automated after the file is uploaded to S3, the file upload process itself is manual. Currently, the sales dataset (CSV) needs to be manually placed in the /to_processed/ folder in S3 for the pipeline to trigger.
+
+
 
 
 ## Install Packages:
