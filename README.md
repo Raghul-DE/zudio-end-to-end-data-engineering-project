@@ -14,7 +14,7 @@ you can download the dataset from this link(for testing purpose),available in th
 ![Architecture diagram of AWS ETL Pipeline.](https://github.com/Raghul-DE/zudio-end-to-end-data-engineering-project/blob/main/zudio-etl-pipeline-architecture.jpg)
 
 ## Services used:
-1. **S3 (Simple Storage Service):** Amazon S3 (Simple Storage Service) is a scalable, secure, and durable cloud storage service used to store, manage, and retrieve data like files, images, logs, and datasets.
+1. **S3 (Simple Storage Service):** Amazon S3 (Simple Storage Service) s a scalable, secure, and durable cloud storage service for storing, managing, and retrieving data such as files, images, logs, and datasets.
    - Stores raw Zudio sales data CSV files before processing.
    - Holds transformed and structured data after the ETL process.
    - Acts as a data lake, allowing Athena to query stored data directly.
@@ -39,48 +39,44 @@ you can download the dataset from this link(for testing purpose),available in th
     - Helps analyze sales trends, store performance, and inventory insights.
     - Uses the schema defined in AWS Glue Data Catalog for optimized querying.
 
-##Data Flow in the ETL Pipeline:
+## Data Flow in the ETL Pipeline
 
-### Data Ingestion (Raw Data Storage in S3)
+### - Data Ingestion (Raw Data Storage in S3):
 The Zudio sales dataset (CSV file) is manually uploaded to an S3 bucket inside the /to_processed/ folder.This serves as the staging area for new data before transformation.
 
-### AWS Lambda - Extract, Transform & Move Processed Data
+### - AWS Lambda - Extract, Transform & Move Processed Data:
 Lambda Function Trigger:
 When a new file is uploaded to /to_processed/, an AWS Lambda function is triggered.
 
-Data Extraction:
+**Data Extraction:**
 The Lambda function reads the CSV file using Pandas and extracts key attributes into structured DataFrames:
 
  - sales_data_df: Order & transaction details
  - store_info_df: Store metadata
  - store_inventory_df: Inventory & stock details
    
-Data Transformation Steps:
+**Data Transformation Steps:**
 
-Convert Date Format:
+ - Convert Date Format: sales_data_df["Order Date"] = pd.to_datetime(sales_data_df["Order Date"]).Ensures that Order Date is properly formatted as a datetime object for better querying.
 
- - sales_data_df["Order Date"] = pd.to_datetime(sales_data_df["Order Date"]).Ensures that Order Date is properly formatted as a datetime object for better querying.
+ - Remove Duplicate Records: Duplicates are removed from all three DataFrames (sales_data_df, store_info_df, store_inventory_df).Ensures data consistency and prevents duplicate entries in the processed dataset.
 
-Remove Duplicate Records:
-
- - Duplicates are removed from all three DataFrames (sales_data_df, store_info_df, store_inventory_df).Ensures data consistency and prevents duplicate entries in the processed dataset.
-
-Transformed Data Storage:
+**Transformed Data Storage:**
 
  - The cleaned and structured data is stored in S3 under /processed-data/ as partitioned Parquet files, which improve query efficiency.
 
-Cleanup Step (Deleting Processed Files from /to_processed/):
+**Cleanup Step (Deleting Processed Files from /to_processed/):**
 
  - Once the transformation is complete and the processed data is successfully stored, Lambda automatically deletes the original file from /to_processed/.This prevents duplicate processing and keeps the pipeline clean.
 
-### AWS Glue Crawler - Schema Inference
+### - AWS Glue Crawler - Schema Inference:
 The Glue Crawler scans /processed-data/, infers the schema, and creates tables in the Glue Data Catalog.The following structured tables are registered in AWS Glue:
 
  - sales_data_table → Transformed sales transactions
  - store_info_table → Cleaned store details
  - store_inventory_table → Processed inventory data
 
-### Amazon Athena - Query & Analytics
+### - Amazon Athena - Query & Analytics:
 Athena queries the transformed data stored in S3 using the Glue Data Catalog schema.
 Example Use Cases:
 
@@ -89,7 +85,7 @@ Example Use Cases:
  - Compare store performance across different locations.
  - Generate insights for replenishment and restocking decisions.
 
-## Final Workflow Summary
+## Final Workflow Summary:
 1️. Raw sales data (CSV) is uploaded to S3 → /to_processed/
 
 2️. AWS Lambda extracts, cleans, and transforms the data.
@@ -100,7 +96,10 @@ Example Use Cases:
 
 5️. AWS Glue Crawler updates the Glue Data Catalog with structured tables.
 
-6️. Amazon Athena allows SQL-based analytics on the transformed dataset.
+6️. Amazon Athena allows SQL-based analytics on the transformed dataset. 
+
+### Conclusion:
+This project showcases the implementation of an ETL pipeline on AWS, utilizing services such as S3, Lambda, Glue, and Athena to efficiently process and analyze sales data.
 
 
 ## Install Packages:
