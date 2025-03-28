@@ -1,14 +1,14 @@
 # Zudio End-To-End Data Engineering Project
 ## Introduction:
-This project builds an ETL pipeline using the Zudio sales dataset on AWS. It extracts raw sales data from S3, transforms it into structured datasets (Sales Data, Store Info, Inventory Data), and loads the transformed files back into S3. Processed files are archived to prevent reprocessing.
+This project develops an ETL pipeline using the Zudio sales dataset on AWS. It extracts raw sales data from S3, transforms it into structured datasets (Sales Data, Store Info, Inventory Data), and loads the transformed files back into S3. Processed files are archived to prevent reprocessing.
 
 ## Use case:
-**AI-Driven Inventory Optimization for Fast Fashion Stores**
+**AI-Driven Inventory Optimization for Fast Fashion Reatilers**
 
 "Retailers struggle with inventory mismanagement, leading to stockouts and excess inventory. My ETL pipeline processes historical Zudio sales data(2024) to forecast demand and optimize inventory levels for 2025."
 
 ## About Dataset:
-you can download the dataset from this link(for testing purpose) - [zudio_sales_data.csv file](https://www.kaggle.com/datasets/saketkshirsagar1/zudio-sales-test-dataset)
+you can download the dataset from this link(for testing purpose),available in the - [zudio_sales_data.csv file](https://www.kaggle.com/datasets/saketkshirsagar1/zudio-sales-test-dataset)
 
 ## Architecture:
 ![Architecture diagram of AWS ETL Pipeline.](https://github.com/Raghul-DE/zudio-end-to-end-data-engineering-project/blob/main/zudio-etl-pipeline-architecture.jpg)
